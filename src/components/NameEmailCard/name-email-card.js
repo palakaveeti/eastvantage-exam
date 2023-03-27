@@ -7,11 +7,14 @@ const NameEmailCard = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
-  useEffect(async () => {
-    await getRandomUser();
-    await getValuesFromLS();
+  useEffect(() => {
+    const getUserFromAPIAndLS = async () => {
+      await getRandomUser();
+      await getValuesFromLS();
+    };
+    getUserFromAPIAndLS();
   }, []);
-  useEffect(() => {}, []);
+
   const getValuesFromLS = async () => {
     const userNameObjectFromLs = JSON.parse(
       await window.localStorage.getItem(randomUserNameKey)

@@ -6,9 +6,12 @@ import { CardContainer, NewUserButton } from './style';
 const NameEmailCard = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  useEffect(() => {
-    getValuesFromLS();
+
+  useEffect(async () => {
+    await getRandomUser();
+    await getValuesFromLS();
   }, []);
+  useEffect(() => {}, []);
   const getValuesFromLS = async () => {
     const userNameObjectFromLs = JSON.parse(
       await window.localStorage.getItem(randomUserNameKey)
